@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/StartFragment"
         android:name="com.example.booktrackingapp.StartFragment"
-        android:label="@string/first_fragment_label"
+        android:label="start_fragment"
         tools:layout="@layout/fragment_start">
 
         <action
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/HomeFragment"
         android:name="com.example.booktrackingapp.HomeFragment"
-        android:label="@string/second_fragment_label"
+        android:label="home_fragment"
         tools:layout="@layout/fragment_home">
 
         <action
