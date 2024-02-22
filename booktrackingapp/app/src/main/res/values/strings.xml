@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BookTrackingApp</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Continue</string>
+    <string name="previous">Previous</string>
+
+    <string name="booktrackingapp">BookTrackingApp</string>
+    <string name="go_back">Go Back</string>
+    <string name="add_book">Add Book</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/StartFragment">
+
+    <fragment
+        android:id="@+id/StartFragment"
+        android:name="com.example.booktrackingapp.StartFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_start">
+
+        <action
+            android:id="@+id/action_StartFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.example.booktrackingapp.HomeFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_StartFragment"
+            app:destination="@id/StartFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_AddBookFragment"
+            app:destination="@id/AddBookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AddBookFragment"
+        android:name="com.example.booktrackingapp.AddBookFragment"
+        android:label="fragment_add_book"
+        tools:layout="@layout/fragment_add_book">
+
+        <action
+            android:id="@+id/action_AddBookFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+</navigation>
