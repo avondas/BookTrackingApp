@@ -6,4 +6,9 @@
     <string name="booktrackingapp">BookTrackingApp</string>
     <string name="go_back">Go Back</string>
     <string name="add_book">Add Book</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="fill_in_the_details_of_the_book">Fill in the details of the book</string>
+    <string name="titleText">Title:</string>
+    <string name="authorText">Author:</string>
 </resources>
