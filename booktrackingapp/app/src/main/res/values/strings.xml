@@ -11,4 +11,6 @@
     <string name="fill_in_the_details_of_the_book">Fill in the details of the book</string>
     <string name="titleText">Title:</string>
     <string name="authorText">Author:</string>
+    <string name="read_the_book">Read the book?</string>
+    <string name="series_name">Series Name</string>
 </resources>

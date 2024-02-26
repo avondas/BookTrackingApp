@@ -32,12 +32,13 @@
             android:text="@string/titleText"
             android:textSize="20sp"
             android:textAlignment="center"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addBookTextView"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
-        <!-- InputField for input -->
+        <!-- InputField for title input -->
         <EditText
             android:id="@+id/bookTitle"
             android:layout_width="wrap_content"
@@ -45,6 +46,7 @@
             android:ems="10"
             android:inputType="text"
             android:text="@string/title"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookTitleTextView"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -57,6 +59,7 @@
             android:text="@string/authorText"
             android:textSize="20sp"
             android:textAlignment="center"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookTitle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +75,58 @@
             android:text="@string/author"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookAuthorTextView"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Read checkbox -->
+        <CheckBox
+            android:id="@+id/readCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/read_the_book"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bookAuthor"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Series checkbox -->
+        <CheckBox
+            android:id="@+id/seriesCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Is this a series?"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/readCheckbox"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- TextView for series input -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/seriesTextView"
+            android:text="@string/series_name"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seriesCheckbox"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <!-- InputField for series -->
+        <EditText
+            android:id="@+id/bookSeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="@string/series_name"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seriesTextView"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
