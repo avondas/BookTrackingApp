@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".StartFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/booksRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginTop="50dp"
+        android:padding="16dp"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

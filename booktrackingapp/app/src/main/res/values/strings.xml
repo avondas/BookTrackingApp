@@ -3,7 +3,6 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="next">Continue</string>
-    <string name="booktrackingapp">BookTrackingApp</string>
     <string name="go_back">Go Back</string>
     <string name="add_book">Add Book</string>
     <string name="title">Title</string>
@@ -13,4 +12,6 @@
     <string name="authorText">Author:</string>
     <string name="read_the_book">Read the book?</string>
     <string name="series_name">Series Name</string>
+    <string name="read">Read</string>
+    <string name="series">Series</string>
 </resources>

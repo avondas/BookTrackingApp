@@ -22,6 +22,9 @@ class AddBookFragment : Fragment() {
     lateinit var readInput: CheckBox
     lateinit var seriesInput: EditText
 
+    // Database helper
+    private lateinit var db: BooksDatabaseHelper
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -36,6 +39,10 @@ class AddBookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Initialize the database helper
+        db = BooksDatabaseHelper(requireContext())
+
         // Where we handle the series checkbox, to show or hide the series name input
         val seriesCheckbox: CheckBox = requireView().findViewById(R.id.seriesCheckbox)
         val seriesText: TextView = requireView().findViewById(R.id.seriesTextView)
@@ -58,7 +65,16 @@ class AddBookFragment : Fragment() {
         seriesInput = seriesName
 
         binding.addButton.setOnClickListener {
-            addBookToJSON(authorInput.text.toString(), titleInput.text.toString(), readInput.isChecked, seriesInput.text.toString())
+            // add book to database
+            val book = Book(
+                titleInput.text.toString(),
+                authorInput.text.toString(),
+                readInput.isChecked,
+                if (seriesCheckbox.isChecked) seriesInput.text.toString() else null
+            )
+            db.insertBook(book)
+
+            // go back to home
             findNavController().navigate(R.id.action_AddBookFragment_to_HomeFragment)
         }
     }
@@ -66,16 +82,5 @@ class AddBookFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun addBookToJSON(author: String, title: String, read: Boolean, series: Any?) {
-        val gson = Gson()
-        val book = Book(title, author, read)
-
-        val prettyJson = GsonBuilder().setPrettyPrinting().create()
-        val books: String = prettyJson.toJson(book)
-
-        val file = File(requireContext().filesDir, "books.json")
-        file.appendText(books + "\n")
     }
 }

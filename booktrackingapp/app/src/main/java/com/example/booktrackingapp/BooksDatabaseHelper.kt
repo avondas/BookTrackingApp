@@ -1,0 +1,64 @@
+package com.example.booktrackingapp
+
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+
+class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
+    companion object {
+        val DATABASE_NAME = "books.db"
+        val DATABASE_VERSION = 1
+        val TABLE_NAME = "books"
+        val COL_TITLE = "title"
+        val COL_AUTHOR = "author"
+        val COL_READ = "read"
+        val COL_SERIES = "series"
+    }
+
+    override fun onCreate(p0: SQLiteDatabase?) {
+        val createTable = "CREATE TABLE $TABLE_NAME ($COL_TITLE TEXT, $COL_AUTHOR TEXT, $COL_READ BOOLEAN, $COL_SERIES TEXT)"
+        p0?.execSQL(createTable)
+    }
+
+    override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        p0?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        onCreate(p0)
+    }
+
+    fun insertBook(book: Book){
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COL_TITLE, book.title)
+            put(COL_AUTHOR, book.author)
+            put(COL_READ, book.read)
+            put(COL_SERIES, book.series)
+        }
+        db.insert(TABLE_NAME, null, values)
+        db.close()
+    }
+
+    fun getAllBooks(): List<Book> {
+        val books = mutableListOf<Book>()
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME ORDER BY $COL_AUTHOR ASC"
+        val cursor = db.rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            val title = cursor.getString(cursor.getColumnIndexOrThrow(COL_TITLE))
+            val author = cursor.getString(cursor.getColumnIndexOrThrow(COL_AUTHOR))
+            val read = cursor.getInt(cursor.getColumnIndexOrThrow(COL_READ))
+            val series = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERIES))
+
+            if(series != null){
+                val book = Book(title, author, read == 1, series)
+                books.add(book)
+            } else {
+                val book = Book(title, author, read == 1, null)
+                books.add(book)
+            }
+        }
+        cursor.close()
+        db.close()
+        return books
+    }
+}
