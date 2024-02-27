@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.booktrackingapp.databinding.FragmentAddBookBinding
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import java.io.File
 
 class AddBookFragment : Fragment() {
@@ -70,7 +71,11 @@ class AddBookFragment : Fragment() {
     private fun addBookToJSON(author: String, title: String, read: Boolean, series: Any?) {
         val gson = Gson()
         val book = Book(title, author, read)
-        val books: String = gson.toJson(book)
-        File("bezkoder1.json").writeText(books)
+
+        val prettyJson = GsonBuilder().setPrettyPrinting().create()
+        val books: String = prettyJson.toJson(book)
+
+        val file = File(requireContext().filesDir, "books.json")
+        file.appendText(books + "\n")
     }
 }
