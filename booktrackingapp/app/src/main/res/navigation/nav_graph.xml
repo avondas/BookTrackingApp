@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_AddBookFragment"
             app:destination="@id/AddBookFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_UpdateBookFragment"
+            app:destination="@id/UpdateBookFragment" />
     </fragment>
     <fragment
         android:id="@+id/AddBookFragment"
@@ -36,6 +39,21 @@
 
         <action
             android:id="@+id/action_AddBookFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/UpdateBookFragment"
+        android:name="com.example.booktrackingapp.UpdateBookFragment"
+        android:label="fragment_book_update"
+        tools:layout="@layout/fragment_book_update">
+
+        <argument
+            android:name="bookId"
+            app:argType="integer"
+            android:defaultValue="-1"
+            />
+        <action
+            android:id="@+id/action_BookUpdateFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
 </navigation>

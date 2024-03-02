@@ -14,4 +14,6 @@
     <string name="series_name">Series Name</string>
     <string name="read">Read</string>
     <string name="series">Series</string>
+    <string name="edit_book">Edit Book</string>
+    <string name="delete_book">delete book</string>
 </resources>

@@ -18,8 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/series"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textStyle="bold"
+            android:layout_marginBottom="8dp"
             android:visibility="gone"
             />
 
@@ -44,14 +45,37 @@
                 android:textSize="16sp" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/author"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp">
 
+            <ImageView
+                android:id="@+id/go_edit_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="35dp"
+                android:contentDescription="@string/edit_book"
+                android:src="@drawable/edit"
+                android:layout_alignParentEnd="true"/>
+
+            <ImageView
+                android:id="@+id/go_delete_button"
+                android:padding="4dp"
+                android:layout_width="32dp"
+                android:layout_height="25dp"
+                android:contentDescription="@string/delete_book"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/delete"
+                android:layout_alignParentEnd="true"/>
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/author"
+                android:textSize="20sp"
+                android:layout_marginTop="4dp"/>
+        </RelativeLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

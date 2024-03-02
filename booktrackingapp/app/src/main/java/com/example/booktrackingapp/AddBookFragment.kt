@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.booktrackingapp.databinding.FragmentAddBookBinding
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import java.io.File
 
 class AddBookFragment : Fragment() {
     private var _binding: FragmentAddBookBinding? = null
@@ -67,13 +65,14 @@ class AddBookFragment : Fragment() {
         binding.addButton.setOnClickListener {
             // add book to database
             val book = Book(
+                0,
                 titleInput.text.toString(),
                 authorInput.text.toString(),
                 readInput.isChecked,
                 if (seriesCheckbox.isChecked) seriesInput.text.toString() else null
             )
-            db.insertBook(book)
-
+            val bookInsert = db.insertBook(book)
+            Toast.makeText(requireContext(), "Book added", Toast.LENGTH_SHORT).show()
             // go back to home
             findNavController().navigate(R.id.action_AddBookFragment_to_HomeFragment)
         }
