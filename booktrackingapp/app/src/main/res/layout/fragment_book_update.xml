@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StartFragment"
-    android:background="@drawable/bookcase_bg">
+    android:background="@drawable/title_page">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,8 +19,9 @@
             android:text="@string/fill_in_the_details_of_the_book"
             android:textSize="25sp"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:layout_gravity="center_horizontal|top"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/bookcase_bg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -31,6 +32,7 @@
             android:layout_height="30dp"
             android:id="@+id/bookTitleTextView"
             android:text="@string/titleText"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginTop="16dp"
@@ -47,6 +49,7 @@
             android:ems="10"
             android:inputType="text"
             android:text="@string/title"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookTitleTextView"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -57,6 +60,7 @@
             android:layout_height="30dp"
             android:id="@+id/bookAuthorTextView"
             android:text="@string/authorText"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textAlignment="center"
             android:layout_marginTop="16dp"
@@ -73,6 +77,7 @@
             android:ems="10"
             android:inputType="text"
             android:text="@string/author"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookAuthorTextView"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -83,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/read_the_book"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Is this a series?"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -109,6 +116,7 @@
             android:text="@string/series_name"
             android:textSize="20sp"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:visibility="gone"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +132,7 @@
             android:ems="10"
             android:inputType="text"
             android:text="@string/series_name"
+            android:textColor="@color/black"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editSeriesTextView"
@@ -136,6 +145,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/edit_book"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/colorPrimary"
         android:layout_gravity="center_horizontal|bottom"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

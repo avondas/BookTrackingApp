@@ -64,6 +64,44 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         return books
     }
 
+    fun getStandaloneBooks(): List<Book> {
+        val books = mutableListOf<Book>()
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME ORDER BY $COL_AUTHOR ASC"
+        val cursor = db.rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID))
+            val title = cursor.getString(cursor.getColumnIndexOrThrow(COL_TITLE))
+            val author = cursor.getString(cursor.getColumnIndexOrThrow(COL_AUTHOR))
+            val read = cursor.getInt(cursor.getColumnIndexOrThrow(COL_READ))
+            val series = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERIES))
+
+            books.add(Book(id, title, author, read == 1, null))
+        }
+        cursor.close()
+        db.close()
+        return books
+    }
+
+    fun getBookSeries(): List<Book> {
+        val books = mutableListOf<Book>()
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME  WHERE $COL_SERIES IS NOT NULL ORDER BY $COL_SERIES ASC"
+        val cursor = db.rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID))
+            val title = cursor.getString(cursor.getColumnIndexOrThrow(COL_TITLE))
+            val author = cursor.getString(cursor.getColumnIndexOrThrow(COL_AUTHOR))
+            val read = cursor.getInt(cursor.getColumnIndexOrThrow(COL_READ))
+            val series = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERIES))
+
+            books.add(Book(id, title, author, read == 1, series))
+        }
+        cursor.close()
+        db.close()
+        return books
+    }
+
     fun updateBook(book: Book){
         val db = writableDatabase
         val values = ContentValues().apply {

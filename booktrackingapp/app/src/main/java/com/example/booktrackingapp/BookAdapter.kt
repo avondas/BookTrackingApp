@@ -76,7 +76,6 @@ class BookAdapter(private var books: List<Book>, context: Context) : RecyclerVie
         holder.deleteButton.setOnClickListener {
             db.deleteBook(book.id)
             refreshData(db.getAllBooks())
-            Toast.makeText(it.context, "Book deleted", Toast.LENGTH_SHORT).show()
         }
     }
 

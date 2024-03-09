@@ -90,13 +90,11 @@ class UpdateBookFragment : Fragment() {
                     if (seriesCheckbox.isChecked) seriesInput.text.toString() else null
                 )
                 val bookEdit = db.updateBook(updatedBook)
-                Toast.makeText(requireContext(), "Book edited", Toast.LENGTH_SHORT).show()
 
                 // go back to home
                 findNavController().navigate(R.id.action_BookUpdateFragment_to_HomeFragment)
             }
         } else {
-            Toast.makeText(requireContext(), "Book not found", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_BookUpdateFragment_to_HomeFragment)
         }
     }

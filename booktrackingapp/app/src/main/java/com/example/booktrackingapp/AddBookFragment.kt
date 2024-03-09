@@ -72,7 +72,6 @@ class AddBookFragment : Fragment() {
                 if (seriesCheckbox.isChecked) seriesInput.text.toString() else null
             )
             val bookInsert = db.insertBook(book)
-            Toast.makeText(requireContext(), "Book added", Toast.LENGTH_SHORT).show()
             // go back to home
             findNavController().navigate(R.id.action_AddBookFragment_to_HomeFragment)
         }
