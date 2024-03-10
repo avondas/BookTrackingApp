@@ -11,20 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <!-- TextView for title of page -->
-        <TextView
-            android:id="@+id/editBookTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="@string/fill_in_the_details_of_the_book"
-            android:textSize="25sp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:layout_gravity="center_horizontal|top"
-            android:background="@drawable/bookcase_bg"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/linear"
+            android:background="@drawable/bookcase_bg">
+
+            <ImageView
+                android:id="@+id/backArrowUpdateBook"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/back_arrow"
+                />
+
+            <!-- TextView for title of page -->
+            <TextView
+                android:id="@+id/addBookTextView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="@string/fill_in_the_details_of_the_book"
+                android:textSize="25sp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal|top"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </LinearLayout>
 
         <!-- TextView for title input -->
         <TextView

@@ -61,8 +61,7 @@ class BookAdapter(private var books: List<Book>, context: Context) : RecyclerVie
             holder.seriesTextView.text = book.series
         }
 
-        val randomIndex = Random().nextInt(images.size)
-        val drawable = ContextCompat.getDrawable(holder.cardView.context, images[randomIndex]) as BitmapDrawable
+        val drawable = ContextCompat.getDrawable(holder.cardView.context, images[book.image]) as BitmapDrawable
         drawable.gravity = Gravity.FILL
         holder.cardView.background = drawable
 

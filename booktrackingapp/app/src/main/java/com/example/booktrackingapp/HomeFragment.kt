@@ -30,31 +30,26 @@ class HomeFragment : Fragment() {
         val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.add -> {
-                    Log.d("HomeFragment", "Add button clicked")
                     findNavController().navigate(R.id.action_HomeFragment_to_AddBookFragment)
                     true
                 }
                 R.id.exit -> {
-                    Log.d("HomeFragment", "Exit button clicked")
                     findNavController().navigate(R.id.action_HomeFragment_to_StartFragment)
                     true
                 }
                 R.id.bookSeries -> {
-                    Log.d("HomeFragment", "Book series button clicked")
                     bookNav = "series"
                     val bookSeries = db.getBookSeries()
                     booksAdapter.refreshData(bookSeries)
                     true
                 }
                 R.id.standaloneBooks -> {
-                    Log.d("HomeFragment", "standalone button clicked")
                     bookNav = "standalone"
                     val standaloneBooks = db.getStandaloneBooks()
                     booksAdapter.refreshData(standaloneBooks)
                     true
                 }
                 R.id.home -> {
-                    Log.d("HomeFragment", "all button clicked")
                     bookNav = "all"
                     booksAdapter.refreshData(db.getAllBooks())
                     true

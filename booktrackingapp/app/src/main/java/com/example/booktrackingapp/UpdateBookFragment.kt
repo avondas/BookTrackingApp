@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -39,6 +40,11 @@ class UpdateBookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val updateBookTextView: ImageView = requireView().findViewById(R.id.backArrowUpdateBook)
+        updateBookTextView.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         // Initialize the database helper
         db = BooksDatabaseHelper(requireContext())
@@ -87,7 +93,8 @@ class UpdateBookFragment : Fragment() {
                     titleInput.text.toString(),
                     authorInput.text.toString(),
                     readInput.isChecked,
-                    if (seriesCheckbox.isChecked) seriesInput.text.toString() else null
+                    if (seriesCheckbox.isChecked) seriesInput.text.toString() else null,
+                    book.image
                 )
                 val bookEdit = db.updateBook(updatedBook)
 

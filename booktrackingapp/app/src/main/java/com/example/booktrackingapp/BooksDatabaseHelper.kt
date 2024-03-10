@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.util.Random
 
 class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
     companion object {
@@ -15,10 +16,11 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         val COL_AUTHOR = "author"
         val COL_READ = "read"
         val COL_SERIES = "series"
+        val COL_IMAGE = "image"
     }
 
     override fun onCreate(p0: SQLiteDatabase?) {
-        val createTable = "CREATE TABLE $TABLE_NAME ($COL_ID INTEGER PRIMARY KEY, $COL_TITLE TEXT, $COL_AUTHOR TEXT, $COL_READ BOOLEAN, $COL_SERIES TEXT)"
+        val createTable = "CREATE TABLE $TABLE_NAME ($COL_ID INTEGER PRIMARY KEY, $COL_TITLE TEXT, $COL_AUTHOR TEXT, $COL_READ BOOLEAN, $COL_SERIES TEXT, $COL_IMAGE INTEGER)"
         p0?.execSQL(createTable)
     }
 
@@ -28,12 +30,15 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
     }
 
     fun insertBook(book: Book){
+        val randomIndex = Random().nextInt(9)
+
         val db = writableDatabase
         val values = ContentValues().apply {
             put(COL_TITLE, book.title)
             put(COL_AUTHOR, book.author)
             put(COL_READ, book.read)
             put(COL_SERIES, book.series)
+            put(COL_IMAGE, randomIndex)
         }
         db.insert(TABLE_NAME, null, values)
         db.close()
@@ -50,12 +55,13 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
             val author = cursor.getString(cursor.getColumnIndexOrThrow(COL_AUTHOR))
             val read = cursor.getInt(cursor.getColumnIndexOrThrow(COL_READ))
             val series = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERIES))
+            val image = cursor.getInt(cursor.getColumnIndexOrThrow(COL_IMAGE))
 
             if(series != null){
-                val book = Book(id, title, author, read == 1, series)
+                val book = Book(id, title, author, read == 1, series, image)
                 books.add(book)
             } else {
-                val book = Book(id, title, author, read == 1, null)
+                val book = Book(id, title, author, read == 1, null, image)
                 books.add(book)
             }
         }
@@ -67,7 +73,7 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
     fun getStandaloneBooks(): List<Book> {
         val books = mutableListOf<Book>()
         val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME ORDER BY $COL_AUTHOR ASC"
+        val query = "SELECT * FROM $TABLE_NAME  WHERE $COL_SERIES IS NULL ORDER BY $COL_AUTHOR ASC"
         val cursor = db.rawQuery(query, null)
         while (cursor.moveToNext()) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID))
@@ -75,8 +81,9 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
             val author = cursor.getString(cursor.getColumnIndexOrThrow(COL_AUTHOR))
             val read = cursor.getInt(cursor.getColumnIndexOrThrow(COL_READ))
             val series = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERIES))
+            val image = cursor.getInt(cursor.getColumnIndexOrThrow(COL_IMAGE))
 
-            books.add(Book(id, title, author, read == 1, null))
+            books.add(Book(id, title, author, read == 1, null, image))
         }
         cursor.close()
         db.close()
@@ -94,8 +101,9 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
             val author = cursor.getString(cursor.getColumnIndexOrThrow(COL_AUTHOR))
             val read = cursor.getInt(cursor.getColumnIndexOrThrow(COL_READ))
             val series = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERIES))
+            val image = cursor.getInt(cursor.getColumnIndexOrThrow(COL_IMAGE))
 
-            books.add(Book(id, title, author, read == 1, series))
+            books.add(Book(id, title, author, read == 1, series, image))
         }
         cursor.close()
         db.close()
@@ -124,10 +132,11 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         val author = cursor.getString(cursor.getColumnIndexOrThrow(COL_AUTHOR))
         val read = cursor.getInt(cursor.getColumnIndexOrThrow(COL_READ))
         val series = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERIES))
+        val image = cursor.getInt(cursor.getColumnIndexOrThrow(COL_IMAGE))
 
         cursor.close()
         db.close()
-        return Book(id, title, author, read == 1, series)
+        return Book(id, title, author, read == 1, series, image)
     }
 
     fun deleteBook(id: Int){

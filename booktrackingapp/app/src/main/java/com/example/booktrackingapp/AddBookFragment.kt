@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -38,6 +39,11 @@ class AddBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val addBookTextView: ImageView = requireView().findViewById(R.id.backArrowAddBook)
+        addBookTextView.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         // Initialize the database helper
         db = BooksDatabaseHelper(requireContext())
 
@@ -69,7 +75,8 @@ class AddBookFragment : Fragment() {
                 titleInput.text.toString(),
                 authorInput.text.toString(),
                 readInput.isChecked,
-                if (seriesCheckbox.isChecked) seriesInput.text.toString() else null
+                if (seriesCheckbox.isChecked) seriesInput.text.toString() else null,
+                0
             )
             val bookInsert = db.insertBook(book)
             // go back to home
