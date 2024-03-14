@@ -27,7 +27,7 @@
 
             <!-- TextView for title of page -->
             <TextView
-                android:id="@+id/addBookTextView"
+                android:id="@+id/editBookTextView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="@string/fill_in_the_details_of_the_book"
@@ -51,7 +51,7 @@
             android:textAlignment="center"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editBookTextView"
+            app:layout_constraintTop_toBottomOf="@+id/linear"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
@@ -139,7 +139,7 @@
             />
 
         <!-- InputField for series -->
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/editBookSeries"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editSeriesTextView"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -85,7 +85,7 @@
             />
 
         <!-- InputField for author -->
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/bookAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
             />
 
         <!-- InputField for series -->
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/bookSeries"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

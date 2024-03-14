@@ -144,4 +144,32 @@ class BooksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         db.delete(TABLE_NAME, "$COL_ID = ?", arrayOf(id.toString()))
         db.close()
     }
+
+    fun getSeriesNames(): List<String> {
+        val seriesNames = mutableListOf<String>()
+        val db = readableDatabase
+        val query = "SELECT DISTINCT $COL_SERIES FROM $TABLE_NAME WHERE $COL_SERIES IS NOT NULL"
+        val cursor = db.rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            val series = cursor.getString(cursor.getColumnIndexOrThrow(COL_SERIES))
+            seriesNames.add(series)
+        }
+        cursor.close()
+        db.close()
+        return seriesNames
+    }
+
+    fun getAuthorNames(): List<String> {
+        val authorNames = mutableListOf<String>()
+        val db = readableDatabase
+        val query = "SELECT DISTINCT $COL_AUTHOR FROM $TABLE_NAME"
+        val cursor = db.rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            val author = cursor.getString(cursor.getColumnIndexOrThrow(COL_AUTHOR))
+            authorNames.add(author)
+        }
+        cursor.close()
+        db.close()
+        return authorNames
+    }
 }

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
@@ -58,12 +60,16 @@ class UpdateBookFragment : Fragment() {
         titleInput = requireView().findViewById(R.id.editBookTitle)
         readInput = requireView().findViewById(R.id.editReadCheckbox)
 
+        val seriesNames = db.getSeriesNames();
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, seriesNames)
+        val autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.editBookSeries)
+        autoCompleteTextView?.setAdapter(adapter)
 
         // set the fields
         if(book != null) {
             val seriesCheckbox: CheckBox = requireView().findViewById(R.id.editSeriesCheckbox)
             val seriesText: TextView = requireView().findViewById(R.id.editSeriesTextView)
-            val seriesName: EditText = requireView().findViewById(R.id.editBookSeries)
+            val seriesName: AutoCompleteTextView = requireView().findViewById(R.id.editBookSeries)
             seriesInput = seriesName
 
             authorInput.setText(book.author)
@@ -83,6 +89,7 @@ class UpdateBookFragment : Fragment() {
                 } else {
                     seriesText.visibility = View.GONE
                     seriesName.visibility = View.GONE
+                    seriesName.setText("")
                 }
             }
 

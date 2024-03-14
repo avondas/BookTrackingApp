@@ -59,6 +59,8 @@ class BookAdapter(private var books: List<Book>, context: Context) : RecyclerVie
         if(book.series != null) {
             holder.seriesTextView.visibility = View.VISIBLE
             holder.seriesTextView.text = book.series
+        } else {
+            holder.seriesTextView.visibility = View.GONE
         }
 
         val drawable = ContextCompat.getDrawable(holder.cardView.context, images[book.image]) as BitmapDrawable
